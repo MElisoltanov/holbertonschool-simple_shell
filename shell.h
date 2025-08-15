@@ -36,7 +36,6 @@ void free_tokens(char **argv);
 int execute_command(char **argv, int *exit_shell, int *exit_status,
 char *prog_name, int line_no);
 pid_t launch_process(const char *path, char **argv, char **envp, int *status);
-char *get_exec_path(char *cmd);
 
 /* ==== path.c ==== */
 char *resolve_path(const char *cmd);
