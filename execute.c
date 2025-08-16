@@ -57,11 +57,13 @@ char *prog_name, int line_no)
 	else
 	{
 		path = resolve_path(argv[0]);
-		if (path == NULL)
+		if (path == NULL || access(path, X_OK) != 0)
 		{
 			fprintf(stderr, "%s: %d: %s: not found\n",
 				prog_name, line_no, argv[0]);
 			*exit_status = 127;
+			if (path)
+				free(path);
 			return (0);
 		}
 		pid = launch_process(path, argv, environ, &status);
