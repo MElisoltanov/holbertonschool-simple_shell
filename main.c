@@ -10,8 +10,9 @@
 int main(int argc, char **argv)
 {
 	(void)argc;
+	(void)argv;
 
 	setup_signals();
 
-	return (shell_loop(argv[0]));
+	return (shell_loop());
 }
