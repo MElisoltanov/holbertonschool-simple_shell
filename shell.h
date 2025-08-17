@@ -20,7 +20,7 @@ extern char **environ;
 
 /* ==== loop.c ==== */
 /* Boucle principale du shell */
-int shell_loop(char *prog_name);
+int shell_loop(void);
 
 /* ==== input.c ==== */
 char *read_input(void);
@@ -33,8 +33,7 @@ size_t count_tokens(const char *line);
 void free_tokens(char **argv);
 
 /* ==== execute.c ==== */
-int execute_command(char **argv, int *exit_shell, int *exit_status,
-char *prog_name, int line_no);
+int execute_command(char **argv, int *exit_shell, int *exit_status);
 pid_t launch_process(const char *path, char **argv, char **envp, int *status);
 
 /* ==== path.c ==== */
