@@ -4,31 +4,12 @@
  * execute_command - Executes a command (builtin or external).
  *
  * @argv: Null-terminated array of command arguments.
- * @exit_shell: Pointer to int that indicates
- * if the shell should exit.
- * @exit_status: Pointer to int that stores
- * the exit status of the command.
- * @prog_name: Name of the shell program (used for error messages).
- * @line_no: Line number of the command (used for error messages).
- *
- * Return: Exit status code of the command.
- *
- */
-#include "shell.h"
-
-/**
- * execute_command - Executes a command (builtin or external).
- *
- * @argv: Null-terminated array of command arguments.
  * @exit_shell: Pointer to int that indicates if the shell should exit.
  * @exit_status: Pointer to int that stores the exit status of the command.
- * @prog_name: Name of the shell program (used for error messages).
- * @line_no: Line number of the command (used for error messages).
  *
  * Return: Always 0.
  */
-int execute_command(char **argv, int *exit_shell, int *exit_status,
-char *prog_name, int line_no)
+int execute_command(char **argv, int *exit_shell, int *exit_status)
 {
 	pid_t pid;
 	int status;
@@ -47,8 +28,7 @@ char *prog_name, int line_no)
 	{
 		if (access(argv[0], X_OK) != 0 || stat(argv[0], &st) != 0 || !S_ISREG(st.st_mode))
 		{
-			fprintf(stderr, "%s: %d: %s: not found\n",
-				prog_name, line_no, argv[0]);
+			fprintf(stderr, "./hsh: 1: %s: not found\n", argv[0]);
 			*exit_status = 127;
 			return (0);
 		}
@@ -59,8 +39,7 @@ char *prog_name, int line_no)
 		path = resolve_path(argv[0]);
 		if (path == NULL || access(path, X_OK) != 0)
 		{
-			fprintf(stderr, "%s: %d: %s: not found\n",
-				prog_name, line_no, argv[0]);
+			fprintf(stderr, "./hsh: 1: %s: not found\n", argv[0]);
 			*exit_status = 127;
 			if (path)
 				free(path);
