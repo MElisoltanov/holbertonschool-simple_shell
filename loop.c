@@ -2,16 +2,15 @@
 
 /**
  * shell_loop - Main execution loop of the simple shell.
- * @prog_name: Name of the shell program.
+ *
  * Return: Nothing.
  */
-int shell_loop(char *prog_name)
+int shell_loop(void)
 {
 	char *line = NULL;
 	char **argv = NULL;
 	int exit_shell = 0;
 	int exit_status = 0;
-	int line_no = 0;
 
 	while (!exit_shell)
 	{
@@ -25,7 +24,6 @@ int shell_loop(char *prog_name)
 				write(STDOUT_FILENO, "\n", 1);
 			return (exit_status);
 		}
-		line_no++;
 
 		argv = tokenize(line);
 		if (argv == NULL || argv[0] == NULL)
@@ -40,7 +38,7 @@ int shell_loop(char *prog_name)
 			argv = NULL;
 			continue;
 		}
-		execute_command(argv, &exit_shell, &exit_status, prog_name, line_no);
+		execute_command(argv, &exit_shell, &exit_status);
 		free_tokens(argv);
 		argv = NULL;
 		free(line);
