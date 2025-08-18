@@ -1,0 +1,79 @@
+.\" Man page for simple shell
+.TH HSH 1 "18 AUGUST 2025" "1.0" "HSH Manual"
+.SH NAME
+hsh \- simple UNIX command interpreter
+.SH SYNOPSIS
+.B hsh
+.br
+.B echo "cmd" | hsh
+.br
+.B hsh < scriptfile
+.SH DESCRIPTION
+.B hsh
+is a minimalist command-line shell built as part of Holberton School training. It supports interactive and non-interactive modes, tokenizes input on whitespace, resolves external commands through the
+.BR PATH (7)
+environment variable, and executes them in child processes via
+.BR fork (2)
+and
+.BR execve (2),
+waiting with
+.BR waitpid (2).
+A small set of built-ins is provided.
+
+.SH OPTIONS
+No command-line options are supported. Input is read from
+.BR stdin .
+When data is redirected or piped, the shell runs in non-interactive mode.
+
+.SH COMMANDS
+The following built-in commands are available:
+.TP
+.B exit [n]
+Terminate the shell. If
+.I n
+is provided, it sets the internal exit status used by the shell loop.
+.TP
+.B env
+Print the current environment (one variable per line).
+
+.SH EXIT STATUS
+In the current implementation the
+.B hsh
+process exits with status
+.B 0
+on normal termination. (If the program later returns the last command’s status from
+.BR main ( ),
+update this section accordingly.)
+
+.SH ENVIRONMENT
+The shell inherits its environment from the parent process. External commands are resolved using
+.BR PATH .
+The
+.B env
+built-in displays the environment.
+
+.SH EXAMPLES
+.TP
+Interactive session:
+.B $ ./hsh
+.br
+.B $ ls -l
+.br
+.B $ exit
+.TP
+Non-interactive (pipeline):
+.B $ echo "ls -l" | ./hsh
+.TP
+Non-interactive (redirected file):
+.B $ ./hsh < scriptfile
+
+.SH BUGS
+Issues are under active investigation. Please report problems to the authors.
+
+.SH AUTHOR
+Written by NGUYEN Haitu and ELISOLTANOV Moussa.
+
+.SH "SEE ALSO"
+.BR sh (1),
+.BR bash (1),
+.BR zsh (1)
