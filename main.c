@@ -1,17 +1,12 @@
 #include "shell.h"
 
 /**
- * main - Entry point of the Simple Shell.
- * @argc: Argument count (unused).
- * @argv: Argument vector.
+ * main - Entry point of the simple shell.
  *
- * Return: 0 on normal termination.
+ * Return: Always 0.
  */
-int main(int argc, char **argv)
+int main(void)
 {
-	(void)argc;
-	(void)argv;
-
 	setup_signals();
 
 	return (shell_loop());
