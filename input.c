@@ -33,7 +33,6 @@ char *read_input(void)
 	{
 		line[n_chars - 1] = '\0';
 	}
-
 	return (line);
 }
 
