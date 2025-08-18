@@ -63,7 +63,7 @@ int execute_command(char **argv, int *exit_shell, int *exit_status)
 }
 
 /**
- * launch_process - Creates a child process to run an external command.
+ * launch_process - Executes a program in a subprocess.
  *
  * @path: Path to the executable file.
  * @argv: Null-terminated array of arguments.
@@ -99,5 +99,6 @@ pid_t launch_process(const char *path, char **argv, char **envp, int *status)
 			return (-1);
 		}
 	}
+
 	return (pid);
 }
