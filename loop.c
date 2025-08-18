@@ -1,9 +1,10 @@
 #include "shell.h"
 
 /**
- * shell_loop - Main execution loop of the simple shell.
+ * shell_loop - Main loop of the shell that reads input,
+ * and executes commands.
  *
- * Return: Nothing.
+ * Return: The exit status of the shell.
  */
 int shell_loop(void)
 {
