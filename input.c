@@ -1,13 +1,9 @@
 #include "shell.h"
-#include <string.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
  * print_prompt - Displays the shell prompt.
  *
- * Return: 0
+ * Return: void
  */
 void print_prompt(void)
 {
@@ -44,7 +40,7 @@ char *read_input(void)
 /**
  * is_interactive - Checks if the shell is in interactive mode.
  *
- * Return: 1 if the shell is in interactive mode, 0 otherwise.
+ * Return: 1 if interactive, 0 otherwise.
  */
 int is_interactive(void)
 {
