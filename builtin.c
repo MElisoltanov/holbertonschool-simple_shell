@@ -25,7 +25,8 @@ int is_builtin(const char *cmd)
  * @exit_shell: pointer to shell shutdown flag
  * @exit_status: pointer to exit code
  *
- * Return: builtin status code
+ * Return: 0 if not a builtin, or 1 if executed
+ * successfully.
  */
 int run_builtin(char **argv, int *exit_shell, int *exit_status)
 {
