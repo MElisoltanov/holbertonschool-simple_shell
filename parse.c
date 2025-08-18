@@ -66,18 +66,22 @@ size_t count_tokens(const char *line)
 
 	if (line == NULL || *line == '\0')
 		return (0);
+
 	line_copy = strdup(line);
+
 	if (line_copy == NULL)
 	{
 		perror("strdup");
 		return (0);
 	}
 	token = strtok(line_copy, " \t\r\n");
+
 	while (token != NULL)
 	{
 		count++;
 		token = strtok(NULL, " \t\r\n");
 	}
+	
 	free(line_copy);
 	return (count);
 }
